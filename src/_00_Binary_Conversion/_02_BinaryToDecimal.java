@@ -29,15 +29,40 @@ import org.junit.jupiter.api.Test;
  * 
  *   010110 in binary is equal to 22 in decimal!
  */
+
+//Concept: I am making two seperate arrays and comparing them. One for each binary number and another for its assigned values.
+
+
 public class _02_BinaryToDecimal {
     int convertBinaryStringToDecimalInt(String binStr) {
     	int dec = 0;
-    	char[] bin = new char[binStr.length()];
+    	int[] bin = new int[binStr.length()];
+    	int [] binValue = new int[bin.length];
+    	//int[] decValues = new int[bin.length];
+     	
+    	//putting each number into the array
     	for(int i = 0; i<binStr.length(); i++) {
-    		bin[i] = binStr.charAt(i);
-    		System.out.println(bin[i] + " ");
+    		bin[i] = Character.getNumericValue(binStr.charAt(i));
+    		
     	}
     	
+    	//assigning each value
+    	int value  = 1;
+    	for(int i = binValue.length-1; i>=0; i--) {
+    		binValue[i] = value;
+    		value = value + value;
+    		
+    	}
+    	//iterating and comparing
+    	for(int i = bin.length; i<0; i++) {
+    		if(bin[i]==1){
+    			dec+= binValue[i];
+    			System.out.println(dec);
+    		}else {
+    			dec+= 0;
+    		}
+    		
+    	}
     	
     	return dec;
     	
