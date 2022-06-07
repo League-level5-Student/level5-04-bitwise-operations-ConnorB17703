@@ -31,21 +31,21 @@ import org.junit.jupiter.api.Test;
  */
 
 //Concept: I am making two seperate arrays and comparing them. One for each binary number and another for its assigned values.
-
+//Problem: something is wrong with the iterating and comparing block
 
 public class _02_BinaryToDecimal {
     int convertBinaryStringToDecimalInt(String binStr) {
     	int dec = 0;
     	int[] bin = new int[binStr.length()];
     	int [] binValue = new int[bin.length];
-    	//int[] decValues = new int[bin.length];
+    	int[] decValues = new int[bin.length];
      	
     	//putting each number into the array
     	for(int i = 0; i<binStr.length(); i++) {
     		bin[i] = Character.getNumericValue(binStr.charAt(i));
-    		
+    		//System.out.println(bin[i]);
     	}
-    	
+    	System.out.println("\n");
     	//assigning each value
     	int value  = 1;
     	for(int i = binValue.length-1; i>=0; i--) {
@@ -53,15 +53,23 @@ public class _02_BinaryToDecimal {
     		value = value + value;
     		
     	}
+    	
+    	
+    	
     	//iterating and comparing
-    	for(int i = bin.length; i<0; i++) {
+    	for(int i = 0; i<bin.length; i++) {
     		if(bin[i]==1){
-    			dec+= binValue[i];
-    			System.out.println(dec);
+    			decValues[bin.length-1 -i] = binValue[i];
+
     		}else {
-    			dec+= 0;
+    			decValues[bin.length-1 -i] = 0;
     		}
+    		System.out.println(bin[i] + "   " + binValue[i] + "   " + decValues[bin.length-1 -i]);	
     		
+    	}
+    	
+    	for(int i = 0; i<decValues.length; i++) {
+    		dec+=decValues[i];
     	}
     	
     	return dec;
@@ -74,13 +82,13 @@ public class _02_BinaryToDecimal {
         int expected = 22;
         assertEquals(expected, convertBinaryStringToDecimalInt(binStr));
         
-//        binStr = "11110000";
-//        expected = 240;
-//        assertEquals(expected, convertBinaryStringToDecimalInt(binStr));
-//        
-//        binStr = "10100101";
-//        expected = 165;
-//        assertEquals(expected, convertBinaryStringToDecimalInt(binStr));
+        binStr = "11110000";
+        expected = 240;
+        assertEquals(expected, convertBinaryStringToDecimalInt(binStr));
+        
+        binStr = "10100101";
+        expected = 165;
+        assertEquals(expected, convertBinaryStringToDecimalInt(binStr));
     }
 }
 
