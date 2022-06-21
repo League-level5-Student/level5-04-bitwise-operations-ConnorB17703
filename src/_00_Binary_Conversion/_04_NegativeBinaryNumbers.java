@@ -63,6 +63,9 @@ public class _04_NegativeBinaryNumbers {
         System.out.println();
         System.out.println(printBin(b));
         System.out.println("~11000000 + 1 = " + printBin((byte)(~b + 1)));
+    
+    System.out.println(Long.toBinaryString(Long.MIN_VALUE));
+    System.out.println(Long.toBinaryString(Long.MAX_VALUE));
     }
     
     static String printBin(byte val) {

@@ -51,6 +51,13 @@ public class _01_IntroToBitShifting {
         
         i = i >>> 1;
         System.out.println("i >>> 1 is ..: " + printBin(i));
+        
+        
+        System.out.println(Integer.toBinaryString(0b111));
+        System.out.println(Integer.toBinaryString(7));
+        System.out.println(0b111);
+        System.out.println(7);
+
     }
     
     static String printBin(int val) {
