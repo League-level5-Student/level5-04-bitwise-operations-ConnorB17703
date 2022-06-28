@@ -37,6 +37,8 @@ package _01_Bit_Shifting;
 public class _01_IntroToBitShifting {
     public static void main(String[] args) {
         int i = 0b00010011;
+        
+        
         System.out.println("i is ........: " + printBin(i));
         
         i = i << 2;
@@ -57,6 +59,9 @@ public class _01_IntroToBitShifting {
         System.out.println(Integer.toBinaryString(7));
         System.out.println(0b111);
         System.out.println(7);
+        
+        
+        
 
     }
     
