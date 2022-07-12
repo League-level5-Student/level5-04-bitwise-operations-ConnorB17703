@@ -28,23 +28,39 @@ import org.junit.jupiter.api.Test;
  */
 
 
-//now you have to find a way using the bitwise operators to add either 1 or 0 to the front of the binary number. (hint: ||)
+//last time you thought of a new process, using a for loop. The for loop iterates for how many rotations there is and each time, you check if there is a 1 or 0 at the front of the number
+//before shifting the number to the left once. Depending whether or not the number has a 1 or 0 in the front you "|| 0b001" the number to add a 1 to the end. CODE THAT!
 
+//new problem: you need to fix the variables of b and the finalvalue so that every time you add 1 to the end, it is a new number.
 
 public class _02_Rotate {
     
     int rotateLeft(int value, int rotateAmount) {
     	int b = 0;
     	int finalvalue = 0;
-    	System.out.println(value); 
-    	System.out.println(Integer.toBinaryString(value));
-   
-    	//int num = value & 0b0001;
+    	System.out.println("Orignal Value: " + value); 
+    	System.out.println("Binary Value: " + Integer.toBinaryString(value));
+    	
+    	int num = value & 0b1000;
     	
     	for(int i = 1; i<rotateAmount+1; i++) {
-    	b = value << i;
+    	//checking if 1 is at the front 
+    	if(num == 8) {
+    		//***
+    		b = value << i;
+    		b = b|0b0001;
+    		//***
+    		System.out.println("Iteration:"+ i + "  There was a 1 at the front --> "+ Integer.toBinaryString(b));
+    		
+    	}else{
+    	//if there wasn't a 1 at the front
+    		b = value << i; 
+    		System.out.println("Iteration:"+ i + "  There was a 0 at the front --> " + Integer.toBinaryString(b));
+
+    	}
     	
-    	System.out.println(Integer.toBinaryString(b));
+    	
+    	
     	
     	}
     	
@@ -64,7 +80,7 @@ public class _02_Rotate {
 //    		
 //    	}
     	
-    	return finalvalue;
+    	return b;
     }
     
     
