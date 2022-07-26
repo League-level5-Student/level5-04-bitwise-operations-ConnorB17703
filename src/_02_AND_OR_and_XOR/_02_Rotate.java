@@ -28,10 +28,7 @@ import org.junit.jupiter.api.Test;
  */
 
 
-//last time you thought of a new process, using a for loop. The for loop iterates for how many rotations there is and each time, you check if there is a 1 or 0 at the front of the number
-//before shifting the number to the left once. Depending whether or not the number has a 1 or 0 in the front you "|| 0b001" the number to add a 1 to the end. CODE THAT!
-
-//new problem: you need to fix the variables of b and the finalvalue so that every time you add 1 to the end, it is a new number.
+//you were working on the rightRotate method last time. there is a problem with the shifting part of the method
 
 public class _02_Rotate {
     
@@ -62,7 +59,7 @@ public class _02_Rotate {
     		
     		System.out.println("\n");
     		
-    	}else{
+    	}else if(num != 8){
     	//if there wasn't a 1 at the front
     		b = value << 1; 
     		System.out.println("Iteration:"+ i + "  There was a 0 at the front --> " + Integer.toBinaryString(b));
@@ -97,7 +94,49 @@ public class _02_Rotate {
     	return finalvalue;
     }
     
-    
+    boolean endsIn1(int value) {
+    	if(value == 1 ) {
+    		return true;
+    	}
+    	return false;
+    }
+ //          ^    
+ //          | 
+ //          | 
+ //          | 
+ //          V 
+    int rotateRight1(int input) {
+    	int output = 0;
+    	//checking if 1 is at the end 
+    		System.out.println("value: " + Integer.toBinaryString(input));
+    	if(endsIn1(input) == true) {
+    		System.out.println("1 at the end \n");
+    		
+    		//***
+    		output = input >> 1;
+    		System.out.println("shift to right --> "+ Integer.toBinaryString(output));
+
+    		input = output|0b10000000000000000000000000000000;
+    		System.out.println("adding 1 at the front --> "+ Integer.toBinaryString(input));
+
+    		
+    		output = input;
+    		input = output;
+    		System.out.println("RESULT: --> "+ Integer.toBinaryString(output));
+    		//***
+    		
+    		System.out.println("\n");
+    		
+    	}else if(endsIn1(input) == false){
+    	//if there wasn't a 1 at the end
+    		System.out.println("0 at the end \n");
+    		
+    		output = input >> 1; 
+
+    	}
+    	return output;
+    	
+    }
     
     
     int rotateRight(int value, int rotateAmount) {
@@ -106,34 +145,11 @@ public class _02_Rotate {
     	System.out.println("Orignal Value: " + value); 
     	System.out.println("Binary Value: " + Integer.toBinaryString(value));
     	
-    	int num = value & 0b1000;
+    	int num = b & 0b0001;
     	
     	for(int i = 1; i<rotateAmount+1; i++) {
-    	//checking if 1 is at the front 
-    	if(num == 8) {
-    		System.out.println("Iteration:"+ i + "  There was a 1 at the front");
-
-    		//***
-    		finalvalue = b >> 1;
-    		System.out.println("shift to left --> "+ Integer.toBinaryString(finalvalue));
-
-    		b = finalvalue|0b0001;
-    		System.out.println("adding 1 at the end --> "+ Integer.toBinaryString(b));
-
-    		
-    		finalvalue = b;
-    		System.out.println("RESULT: --> "+ Integer.toBinaryString(finalvalue));
-    		//***
-    		
-    		System.out.println("\n");
-    		
-    	}else{
-    	//if there wasn't a 1 at the front
-    		b = value >> 1; 
-    		System.out.println("Iteration:"+ i + "  There was a 0 at the front --> " + Integer.toBinaryString(b));
-
-    	}
-    	
+    		finalvalue = rotateRight1(num);
+    		b = finalvalue;
     	}
     	
     	return finalvalue;

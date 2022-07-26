@@ -59,7 +59,7 @@ public class _01_IntroToBitShifting {
         System.out.println(Integer.toBinaryString(7));
         System.out.println(0b111);
         System.out.println(7);
-        
+        System.out.println(printBin(7));
         
         
 
