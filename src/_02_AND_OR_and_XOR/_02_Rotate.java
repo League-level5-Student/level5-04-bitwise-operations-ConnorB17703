@@ -95,7 +95,8 @@ public class _02_Rotate {
     }
     
     boolean endsIn1(int value) {
-    	if(value == 1 ) {
+    	int val = value & 0b0001;
+    	if(val == 1 ) {
     		return true;
     	}
     	return false;
@@ -105,33 +106,33 @@ public class _02_Rotate {
  //          | 
  //          | 
  //          V 
-    int rotateRight1(int input) {
+    int rotateRight1(int val) {
     	int output = 0;
     	//checking if 1 is at the end 
-    		System.out.println("value: " + Integer.toBinaryString(input));
-    	if(endsIn1(input) == true) {
+    									//System.out.println("value: " + Integer.toBinaryString(val));
+    	if(endsIn1(val) == true) {
     		System.out.println("1 at the end \n");
     		
     		//***
-    		output = input >> 1;
+    		output = val >> 1;
     		System.out.println("shift to right --> "+ Integer.toBinaryString(output));
 
-    		input = output|0b10000000000000000000000000000000;
-    		System.out.println("adding 1 at the front --> "+ Integer.toBinaryString(input));
+    		val= output|0b10000000000000000000000000000000;
+    		System.out.println("adding 1 at the front --> "+ Integer.toBinaryString(val));
 
     		
-    		output = input;
-    		input = output;
+    		output = val;
+    		val = output;
     		System.out.println("RESULT: --> "+ Integer.toBinaryString(output));
     		//***
     		
     		System.out.println("\n");
     		
-    	}else if(endsIn1(input) == false){
+    	}else if(endsIn1(val) == false){
     	//if there wasn't a 1 at the end
-    		System.out.println("0 at the end \n");
-    		
-    		output = input >> 1; 
+    		System.out.println("0 at the end");
+    		output = val >> 1; 
+    		System.out.println("shift to the right --> " + Integer.toBinaryString(output) + "\n");
 
     	}
     	return output;
@@ -145,10 +146,9 @@ public class _02_Rotate {
     	System.out.println("Orignal Value: " + value); 
     	System.out.println("Binary Value: " + Integer.toBinaryString(value));
     	
-    	int num = b & 0b0001;
     	
     	for(int i = 1; i<rotateAmount+1; i++) {
-    		finalvalue = rotateRight1(num);
+    		finalvalue = rotateRight1(b);
     		b = finalvalue;
     	}
     	
@@ -161,25 +161,25 @@ public class _02_Rotate {
     
     
     
-    @Test
-    void testRotateLeft() {
-        int i = -8;
-
-        int result = rotateLeft(i, 1);
-        System.out.println("Left rotate tests");
-        System.out.println("Expected: " + Integer.toBinaryString(-15));
-        System.out.println("Actual  : " + Integer.toBinaryString(result));
-        assertEquals(-15, result);
-        
-    	System.out.println("\n" + "-------------------------------------------------------------------");
-        
-        result = rotateLeft(i, 3);
-        System.out.println();
-        System.out.println("Expected: " + Integer.toBinaryString(-57));
-        System.out.println("Actual  : " + Integer.toBinaryString(result));
-        assertEquals(-57, result);
-        
-    }
+//    @Test
+//    void testRotateLeft() {
+//        int i = -8;
+//
+//        int result = rotateLeft(i, 1);
+//        System.out.println("Left rotate tests");
+//        System.out.println("Expected: " + Integer.toBinaryString(-15));
+//        System.out.println("Actual  : " + Integer.toBinaryString(result));
+//        assertEquals(-15, result);
+//        
+//    	System.out.println("\n" + "-------------------------------------------------------------------");
+//        
+//        result = rotateLeft(i, 3);
+//        System.out.println();
+//        System.out.println("Expected: " + Integer.toBinaryString(-57));
+//        System.out.println("Actual  : " + Integer.toBinaryString(result));
+//        assertEquals(-57, result);
+//        
+//    }
     
     @Test
     void testRotateRight() {
