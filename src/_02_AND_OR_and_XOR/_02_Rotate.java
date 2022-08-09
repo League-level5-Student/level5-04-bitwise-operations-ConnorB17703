@@ -28,7 +28,7 @@ import org.junit.jupiter.api.Test;
  */
 
 
-//you were working on the rightRotate method last time. there is a problem with the shifting part of the method
+//you were working on the rightRotate method last time. there is a problem with the shifting part of the method, everytime it shifts it still adds a 1 in the front even though no zero has been detected at the end.
 
 public class _02_Rotate {
     
@@ -114,7 +114,7 @@ public class _02_Rotate {
     		System.out.println("1 at the end \n");
     		
     		//***
-    		output = val >> 1;
+    		output = val >>> 1;
     		System.out.println("shift to right --> "+ Integer.toBinaryString(output));
 
     		val= output|0b10000000000000000000000000000000;
@@ -131,7 +131,7 @@ public class _02_Rotate {
     	}else if(endsIn1(val) == false){
     	//if there wasn't a 1 at the end
     		System.out.println("0 at the end");
-    		output = val >> 1; 
+    		output = val >>> 1; 
     		System.out.println("shift to the right --> " + Integer.toBinaryString(output) + "\n");
 
     	}
@@ -161,25 +161,25 @@ public class _02_Rotate {
     
     
     
-//    @Test
-//    void testRotateLeft() {
-//        int i = -8;
-//
-//        int result = rotateLeft(i, 1);
-//        System.out.println("Left rotate tests");
-//        System.out.println("Expected: " + Integer.toBinaryString(-15));
-//        System.out.println("Actual  : " + Integer.toBinaryString(result));
-//        assertEquals(-15, result);
-//        
-//    	System.out.println("\n" + "-------------------------------------------------------------------");
-//        
-//        result = rotateLeft(i, 3);
-//        System.out.println();
-//        System.out.println("Expected: " + Integer.toBinaryString(-57));
-//        System.out.println("Actual  : " + Integer.toBinaryString(result));
-//        assertEquals(-57, result);
-//        
-//    }
+    @Test
+    void testRotateLeft() {
+        int i = -8;
+
+        int result = rotateLeft(i, 1);
+        System.out.println("Left rotate tests");
+        System.out.println("Expected: " + Integer.toBinaryString(-15));
+        System.out.println("Actual  : " + Integer.toBinaryString(result));
+        assertEquals(-15, result);
+        
+    	System.out.println("\n" + "-------------------------------------------------------------------");
+        
+        result = rotateLeft(i, 3);
+        System.out.println();
+        System.out.println("Expected: " + Integer.toBinaryString(-57));
+        System.out.println("Actual  : " + Integer.toBinaryString(result));
+        assertEquals(-57, result);
+        
+    }
     
     @Test
     void testRotateRight() {
