@@ -7,30 +7,41 @@ public class _01_BinaryPrinter {
      * Use the main method to test your methods.
      */
 
+	//what its asking is confusing
 
     public static void printByteBinary(byte b) {
         // We first want to print the bit in the one's place
-
+    	for(int i = 0; i<8; i++) {
         // Shift b seven bits to the right
-    	int bShifted  = b >>> 7;
+    	int bShifted  = b >>> 7 - i;
         // Use the & operator to "mask" the bit in the one's place
         // This can be done by "anding" (&) it with the value of 1
-    	int i = bShifted&1;
+    	int j = bShifted&1;
     	
         // Print the result using System.out.print (NOT System.out.println)
-    	System.out.print(i);
+    	System.out.print(j);
+    	}
         //Use this method to print the remaining 7 bits of b
+    	
+    	
     }
 
-    public void printShortBinary(short s) {
+    public static void printShortBinary(short s) {
         // Create 2 byte variables
-
+    	byte half1;
+    	byte half2;
         // Use bit shifting and masking (&) to save the first
         // 8 bits of s in one byte, and the second 8 bits of
         // s in the other byte
-
+    	half1 = (byte) (s&0xFF);
+    	
+    	int SS = s>>>7;
+    	half2 = (byte)(SS&0xFF);
+    	
         // Call printByteBinary twice using the two bytes
         // Make sure they are in the correct order
+    	printByteBinary(half1);
+    	printByteBinary(half2);
     }
 
     public void printIntBinary(int i) {
@@ -50,7 +61,11 @@ public class _01_BinaryPrinter {
 
     public static void main(String[] args) {
         // Test your methods here
-    	printByteBinary((byte)80);
+    	printByteBinary((byte) 80);
+    	System.out.println("\n");
+    	
+    	printShortBinary((short)80);
+    	
     	
     }
 }
