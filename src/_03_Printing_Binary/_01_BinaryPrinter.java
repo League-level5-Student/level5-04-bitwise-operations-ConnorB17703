@@ -7,7 +7,7 @@ public class _01_BinaryPrinter {
      * Use the main method to test your methods.
      */
 
-	//what its asking is confusing
+	
 
     public static void printByteBinary(byte b) {
         // We first want to print the bit in the one's place
@@ -44,19 +44,38 @@ public class _01_BinaryPrinter {
     	printByteBinary(half2);
     }
 
-    public void printIntBinary(int i) {
+    public static void  printIntBinary(int i) {
         // Create 2 short variables
-
+    	short h1;
+    	short h2;
+    	
         // Use bit shifting and masking (&) to save the first
         // 16 bits of i in one short, and the second 16 bits of
         // i in the other short
+    	h1 = (short) (i & 0xFF);
+    	
+    	int IS = i >>> 15;
+    	h2 = (short) (IS & 0xFF);
 
         // Call printShortBinary twice using the two short variables
         // Make sure they are in the correct order
+    	printShortBinary(h1);
+    	printShortBinary(h2);
+    	
     }
 
-    public void printLongBinary(long l) {
+    public static void printLongBinary(long l) {
         // Use the same method as before to complete this method
+    	int h1;
+    	int h2;
+    	
+    	h1 = (int) (l&0xFF);
+    	
+    	int LS = (int) (l >>> 31);
+    	h2 = (int) (LS &0xFF);
+    	
+    	printIntBinary(h1);
+    	printIntBinary(h2);
     }
 
     public static void main(String[] args) {
@@ -65,7 +84,11 @@ public class _01_BinaryPrinter {
     	System.out.println("\n");
     	
     	printShortBinary((short)80);
+    	System.out.println("\n");
     	
+    	printIntBinary(80);    
+    	System.out.println("\n");
     	
+    	printLongBinary(80);
     }
 }

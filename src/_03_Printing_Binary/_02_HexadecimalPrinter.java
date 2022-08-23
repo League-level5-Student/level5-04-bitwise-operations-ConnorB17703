@@ -51,8 +51,19 @@ public class _02_HexadecimalPrinter implements ActionListener {
      * Complete these 3 methods. Assume the binary value is an int (32 bits).
      * You don't have to handle negative numbers unless you want the challenge!
      */
+    
+    //you have to check every four bits and turn them into integers base on the chart. 
+    //Reminder: you are working with 32 bits
+    
     String binaryToHex(String binaryStr) {
-        return "-";
+       // int binary = Integer.parseInt(binaryStr);
+    	for(int i = 0; i<4; i++) {
+    		
+    	}
+    	
+        
+        
+    	return "-";
     }
     
     String binaryToDec(String binaryStr) {
