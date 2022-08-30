@@ -56,14 +56,23 @@ public class _02_HexadecimalPrinter implements ActionListener {
     //Reminder: you are working with 32 bits
     
     String binaryToHex(String binaryStr) {
-       // int binary = Integer.parseInt(binaryStr);
-    	for(int i = 0; i<4; i++) {
-    		
-    	}
+    	String byte1 = binaryStr.substring(0, 4);
+    	String byte2 = binaryStr.substring(4,8);
+    	String byte3 = binaryStr.substring(8, 12);
+    	String byte4 = binaryStr.substring(12,16);
+    	String byte5 = binaryStr.substring(16,20);
+    	String byte6 = binaryStr.substring(20,24);
+    	String byte7 = binaryStr.substring(24,28);
+    	String byte8 = binaryStr.substring(28,32);
+
+    	
+    	
+    	// checks and saves each byte 
+    	
     	
         
         
-    	return "-";
+    	return byte1;
     }
     
     String binaryToDec(String binaryStr) {
