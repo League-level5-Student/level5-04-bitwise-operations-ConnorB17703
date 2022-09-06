@@ -54,7 +54,7 @@ public class _02_HexadecimalPrinter implements ActionListener {
     
     //you have to check every four bits and turn them into integers base on the chart. 
     //Reminder: you are working with 32 bits
-    
+    //use this binary sample to test: 110010101001110101010011010101010
     String binaryToHex(String binaryStr) {
     	String byte1 = binaryStr.substring(0, 4);
     	String byte2 = binaryStr.substring(4,8);
@@ -65,14 +65,16 @@ public class _02_HexadecimalPrinter implements ActionListener {
     	String byte7 = binaryStr.substring(24,28);
     	String byte8 = binaryStr.substring(28,32);
 
-    	
+    	String bytes[] = null;
     	
     	// checks and saves each byte 
-    	
+    	for(int i=0; i<8; i++){
+    		bytes[i] = binaryStr.substring(0+4, 4*i);
+    	}
     	
         
         
-    	return byte1;
+    	return byte3;
     }
     
     String binaryToDec(String binaryStr) {
