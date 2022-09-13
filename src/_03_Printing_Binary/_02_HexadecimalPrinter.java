@@ -54,27 +54,105 @@ public class _02_HexadecimalPrinter implements ActionListener {
     
     //you have to check every four bits and turn them into integers base on the chart. 
     //Reminder: you are working with 32 bits
-    //use this binary sample to test: 110010101001110101010011010101010
+    //use this binary sample to test: 11001010100111010101001101010101
+    
+    //9/12/2022: you finished the binaryToHex method; finish other methods
+    
     String binaryToHex(String binaryStr) {
-    	String byte1 = binaryStr.substring(0, 4);
-    	String byte2 = binaryStr.substring(4,8);
-    	String byte3 = binaryStr.substring(8, 12);
-    	String byte4 = binaryStr.substring(12,16);
-    	String byte5 = binaryStr.substring(16,20);
-    	String byte6 = binaryStr.substring(20,24);
-    	String byte7 = binaryStr.substring(24,28);
-    	String byte8 = binaryStr.substring(28,32);
+    	String hexVal = "";
+//    	String byte1 = binaryStr.substring(0, 4);
+//    	String byte2 = binaryStr.substring(4,8);
+    	//String byte3 = binaryStr.substring(8, 12);
+//    	String byte4 = binaryStr.substring(12,16);
+//    	String byte5 = binaryStr.substring(16,20);
+//    	String byte6 = binaryStr.substring(20,24);
+//    	String byte7 = binaryStr.substring(24,28);
+//    	String byte8 = binaryStr.substring(28,32);
 
-    	String bytes[] = null;
+    	String bytes[] = new String[8];
     	
     	// checks and saves each byte 
+    	int o;
     	for(int i=0; i<8; i++){
-    		bytes[i] = binaryStr.substring(0+4, 4*i);
+    		o = 4+(4*i);
+    		bytes[i] = binaryStr.substring(4*i, o);
+    		System.out.println("(" + 4*i + ", " + o + "): " + bytes[i]);
+    		
     	}
     	
+    	//converts each byte into integers and checks
+    	int b;
+    	String hexDigit = "";
+    	for(int i = 0 ; i<8; i++) {
+    		b = Integer.parseInt(bytes[i]);
+    		
+    		switch(b) {
+    		case 0001:
+    			hexDigit = "1";
+    			break;
+    		
+    		case 0010:
+    			hexDigit = "2";
+    			break;
+    		
+    		case 0011:
+    			hexDigit = "3";
+    			break; 
+    			
+    		case 0100:
+    			hexDigit = "4";
+    			break;
+    			
+    		case 0101:
+    			hexDigit = "5";
+    			break;
+    			
+    		case 0110:
+    			hexDigit = "6";
+    			break;
+    			
+    		case 0111:
+    			hexDigit = "7";
+    			break;
+    			
+    		case 1000:
+    			hexDigit = "8";
+    			break;
+    			
+    		case 1001:
+    			hexDigit = "9";
+    			break;
+    			
+    		case 1010:
+    			hexDigit  = "A";
+    			break;
+    		
+    		case 1011:
+    			hexDigit = "B";
+    			break;
+    		
+    		case 1100:
+    			hexDigit = "C";
+    			break;
+    			
+    		case 1101:
+    			hexDigit = "D";
+    			break;
+    			
+    		case 1110:
+    			hexDigit = "E";
+    			break;
+    			
+    		case 1111:
+    			hexDigit = "F";
+    			break;
+    		}
+    		hexVal += hexDigit;
+    		
+    	}
         
         
-    	return byte3;
+    	return hexVal;
     }
     
     String binaryToDec(String binaryStr) {
