@@ -56,7 +56,7 @@ public class _02_HexadecimalPrinter implements ActionListener {
     //Reminder: you are working with 32 bits
     //use this binary sample to test: 11001010100111010101001101010101
     
-    //9/12/2022: you finished the binaryToHex method; finish other methods
+    //9/19/2022: issues with binary to decimal method (probably problem with dec variable)
     
     String binaryToHex(String binaryStr) {
     	String hexVal = "";
@@ -156,7 +156,44 @@ public class _02_HexadecimalPrinter implements ActionListener {
     }
     
     String binaryToDec(String binaryStr) {
-        return "-";
+    	int dec = 0;
+    	int[] bin = new int[binaryStr.length()];
+    	int[] binVal = new int[bin.length];
+    	int[] decVal = new int[bin.length];
+    	
+    	//assigning all characters into array
+    	for(int i=0; i<binaryStr.length(); i++) {
+        	//System.out.println(binaryStr.charAt(i));
+        	bin[i] = Character.getNumericValue(binaryStr.charAt(i));
+        }
+    	
+    	//assigning all character in array with values
+    	int value = 1;
+    	for(int i=binaryStr.length()-1; i>=0; i--) {
+    		binVal[i] = value;
+    		value = value+value;
+    	}
+    	
+    	//iterating and checking each
+    	for(int i = 0; i<bin.length; i++) {
+    		if(bin[i] == 1) {
+    			decVal[bin.length-1 -i] = bin[i];
+    		}else {
+    			decVal[bin.length-1 -i] = 0;
+    			
+    		}
+    		System.out.println(bin[i] + "   " + binVal[i] + "   " + decVal[bin.length-1 -i]);	
+    	}
+    	
+    	
+    	//adding all values to create decimal  ***************
+    	for(int i = 0; i<decVal.length; i++) {
+    		dec += decVal[i];
+    		System.out.println(dec);
+    	}
+    	
+    	
+    	return String.valueOf(dec);
     }
 
     /*

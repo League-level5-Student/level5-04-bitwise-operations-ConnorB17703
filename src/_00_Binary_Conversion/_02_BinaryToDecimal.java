@@ -70,6 +70,7 @@ public class _02_BinaryToDecimal {
     	
     	for(int i = 0; i<decValues.length; i++) {
     		dec+=decValues[i];
+    		
     	}
     	
     	return dec;
