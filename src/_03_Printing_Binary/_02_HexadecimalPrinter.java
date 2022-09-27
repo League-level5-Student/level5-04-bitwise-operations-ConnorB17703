@@ -54,7 +54,9 @@ public class _02_HexadecimalPrinter implements ActionListener {
     
     //you have to check every four bits and turn them into integers base on the chart. 
     //Reminder: you are working with 32 bits
-    //use this binary sample to test: 11001010100111010101001101010101
+    //use this binary sample to test: 01001010100111010101001101010101
+    //00000000000000000000000001010000
+    //00101001010100111010101010101010
     
     //9/19/2022: issues with binary to decimal method (probably problem with dec variable)
     
@@ -81,69 +83,69 @@ public class _02_HexadecimalPrinter implements ActionListener {
     	}
     	
     	//converts each byte into integers and checks
-    	int b;
+    
     	String hexDigit = "";
     	for(int i = 0 ; i<8; i++) {
-    		b = Integer.parseInt(bytes[i]);
+    		String nibble = bytes[i];
     		
-    		switch(b) {
-    		case 0001:
+    		switch(nibble) {
+    		case "0001":
     			hexDigit = "1";
     			break;
     		
-    		case 0010:
+    		case "0010":
     			hexDigit = "2";
     			break;
     		
-    		case 0011:
+    		case "0011":
     			hexDigit = "3";
     			break; 
     			
-    		case 0100:
+    		case "0100":
     			hexDigit = "4";
     			break;
     			
-    		case 0101:
+    		case "0101":
     			hexDigit = "5";
     			break;
     			
-    		case 0110:
+    		case "0110":
     			hexDigit = "6";
     			break;
     			
-    		case 0111:
+    		case "0111":
     			hexDigit = "7";
     			break;
     			
-    		case 1000:
+    		case "1000":
     			hexDigit = "8";
     			break;
     			
-    		case 1001:
+    		case "1001":
     			hexDigit = "9";
     			break;
     			
-    		case 1010:
+    		case "1010":
     			hexDigit  = "A";
     			break;
     		
-    		case 1011:
+    		case "1011":
     			hexDigit = "B";
     			break;
     		
-    		case 1100:
+    		case "1100":
     			hexDigit = "C";
     			break;
     			
-    		case 1101:
+    		case "1101":
     			hexDigit = "D";
     			break;
     			
-    		case 1110:
+    		case "1110":
     			hexDigit = "E";
     			break;
     			
-    		case 1111:
+    		case "1111":
     			hexDigit = "F";
     			break;
     		}
@@ -177,7 +179,7 @@ public class _02_HexadecimalPrinter implements ActionListener {
     	//iterating and checking each
     	for(int i = 0; i<bin.length; i++) {
     		if(bin[i] == 1) {
-    			decVal[bin.length-1 -i] = bin[i];
+    			decVal[bin.length-1 -i] = binVal[i];
     		}else {
     			decVal[bin.length-1 -i] = 0;
     			
@@ -200,11 +202,19 @@ public class _02_HexadecimalPrinter implements ActionListener {
      * ASCII values are exactly 8 bits so return '-' if there isn't.
      */
     String binaryToAscii(String binaryStr) {
-        if (binaryStr.length() != 8) {
+       
+    	
+    	
+    	
+    	if (binaryStr.length() != 8) {
             return "-";
         }
 
         return "-";
+    
+    
+    
+    
     }
     
     public static void main(String[] args) {
