@@ -58,7 +58,7 @@ public class _02_HexadecimalPrinter implements ActionListener {
     //00000000000000000000000001010000
     //00101001010100111010101010101010
     
-    //9/19/2022: issues with binary to decimal method (probably problem with dec variable)
+    //9/26/2022: you just finished the binary to dec method and fixed the hexdecimal method. work and finish the Ascii method
     
     String binaryToHex(String binaryStr) {
     	String hexVal = "";
@@ -200,17 +200,32 @@ public class _02_HexadecimalPrinter implements ActionListener {
 
     /*
      * ASCII values are exactly 8 bits so return '-' if there isn't.
+     * 
+     * have to figure out how to split the string into 8 bits, turn those into integers, turn those into characters, then add together
+     * 
+     * 
      */
     String binaryToAscii(String binaryStr) {
-       
-    	
-    	
-    	
     	if (binaryStr.length() != 8) {
             return "-";
-        }
+        
+    	}
 
-        return "-";
+String ascii = "";
+String bits[] = new String[4];
+    	
+		
+for(int i=0; i<4; i++) {
+	//System.out.println(binaryStr.charAt(i));
+	bits[i] = Character.getNumericValue(binaryStr.substring(8*i, 8+(8*i)));
+}
+
+for(int i = 0; i< 4; i++) {
+    		bits[i] = binaryStr.substring(8*i, 8+(8*i));
+    		System.out.println("(" + 8*i + ", " + 8+(8*i) + "): " + bits[i]);
+    	}
+
+        return ascii;
     
     
     
