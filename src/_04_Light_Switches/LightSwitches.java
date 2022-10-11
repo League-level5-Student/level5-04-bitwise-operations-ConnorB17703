@@ -55,6 +55,11 @@ public class LightSwitches implements GameControlScene {
      * index = 6        // return true if pink is on (bit 6 == 1)
      */
     boolean isLightOn(int index) {
+    	//how do you which bit your talking about?
+    	
+    	if(index == 1) {
+    		return true;
+    	}
         return false;
     }
     

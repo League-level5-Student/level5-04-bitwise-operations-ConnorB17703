@@ -78,7 +78,7 @@ public class _02_HexadecimalPrinter implements ActionListener {
     	for(int i=0; i<8; i++){
     		o = 4+(4*i);
     		bytes[i] = binaryStr.substring(4*i, o);
-    		System.out.println("(" + 4*i + ", " + o + "): " + bytes[i]);
+    		//System.out.println("(" + 4*i + ", " + o + "): " + bytes[i]);
     		
     	}
     	
@@ -184,14 +184,14 @@ public class _02_HexadecimalPrinter implements ActionListener {
     			decVal[bin.length-1 -i] = 0;
     			
     		}
-    		System.out.println(bin[i] + "   " + binVal[i] + "   " + decVal[bin.length-1 -i]);	
+    		//System.out.println(bin[i] + "   " + binVal[i] + "   " + decVal[bin.length-1 -i]);	
     	}
     	
     	
     	//adding all values to create decimal  ***************
     	for(int i = 0; i<decVal.length; i++) {
     		dec += decVal[i];
-    		System.out.println(dec);
+    		//System.out.println(dec);
     	}
     	
     	
@@ -206,24 +206,35 @@ public class _02_HexadecimalPrinter implements ActionListener {
      * 
      */
     String binaryToAscii(String binaryStr) {
-    	if (binaryStr.length() != 8) {
-            return "-";
-        
-    	}
 
 String ascii = "";
 String bits[] = new String[4];
-    	
-		
+String bVal[] = new String[4];
+int bChar[] = new int[4];
+int a = 65;	
+//separates binary number into 4 8-chunks
 for(int i=0; i<4; i++) {
 	//System.out.println(binaryStr.charAt(i));
-	bits[i] = Character.getNumericValue(binaryStr.substring(8*i, 8+(8*i)));
+	bits[i] = binaryStr.substring(8*i, 8+(8*i));
+	System.out.println("(" + 8*i + ", " + 8+(8*i) + "): " + bits[i]);
+
 }
 
-for(int i = 0; i< 4; i++) {
-    		bits[i] = binaryStr.substring(8*i, 8+(8*i));
-    		System.out.println("(" + 8*i + ", " + 8+(8*i) + "): " + bits[i]);
-    	}
+//converts all chunks into decimal numbers (strings)
+for(int i = 0; i<bits.length; i++) {
+	bVal[i] = binaryToDec(bits[i]);
+	//System.out.println(bVal[i]);
+}
+
+
+//converts all decimal numbers into characters
+for(int i = 0; i<bVal.length; i++) {
+	bChar[i] = Integer.parseInt(bVal[i]);
+	System.out.println(bChar[i]);
+	
+	ascii+=(char)bChar[i];
+	
+}
 
         return ascii;
     
