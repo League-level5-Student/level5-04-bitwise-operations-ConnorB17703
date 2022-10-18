@@ -23,7 +23,7 @@ import game_tools.GameControlScene;
  * where,
  *      lightsOnOff = 0b01010001    // blue, yellow, and pink are on
  *      lightsOnOff = 0x28          // orange and black are on
- *      lightsOnOff = 65            // green and cyan are on
+ *      *WRONG* lightsOnOff = 65            // green and cyan are on
  * 
  * The code is implemented correctly if the light pattern matches the pattern
  * in the LightSwitches.gif file in this folder.
@@ -50,16 +50,23 @@ public class LightSwitches implements GameControlScene {
     // 8-bit bitmap. Leave as int so methods won't have to cast to a byte
     int lightsOnOff = 0;
 
+    //basically its 0000 0000
+    
     /*
      * This method should check if the specified light is on, example:
      * index = 6        // return true if pink is on (bit 6 == 1)
      */
+    
+    
     boolean isLightOn(int index) {
-    	//how do you which bit your talking about?
     	
-    	if(index == 1) {
+    	int checker = 0b00000001 << index;
+    	int x = lightsOnOff & checker;
+    	
+    	if(x == checker) {
     		return true;
     	}
+
         return false;
     }
     
@@ -68,7 +75,14 @@ public class LightSwitches implements GameControlScene {
      * index = 4        // turn off yellow only (set bit 4 = 1)
      */
     void turnLightOn(int index) {
-        
+     
+    	int checker = 0b00000001 << index;
+    	int x = lightsOnOff & checker;
+    	
+    	if(x == checker) {
+    		x = 1;
+    	}
+
     }
     
     /*
@@ -77,6 +91,14 @@ public class LightSwitches implements GameControlScene {
      */
     void turnLightOff(int index) {
         
+    	int checker = 0b00000001 << index;
+    	int x = lightsOnOff & checker;
+    	
+    	if(x == checker) {
+    		x = 0;
+    	}
+
+    	
     }
     
     /*
@@ -84,7 +106,10 @@ public class LightSwitches implements GameControlScene {
      * lightsBitmap = 0b01100110  // lights 1, 2, 5, 6 on
      */
     void turnMultiLightsOn(int lightsBitmap) {
+        int x = lightsOnOff & lightsBitmap;
         
+        //use the lightsBitmap variable to try and turn on multiple lights 
+    	
     }
     
     /*
@@ -92,7 +117,7 @@ public class LightSwitches implements GameControlScene {
      * lightsBitmap = 0b10000001  // lights 0, 7 off
      */
     void turnMultiLightsOff(int lightsBitmap) {
-        
+    	
     }
     
     /*
@@ -106,6 +131,7 @@ public class LightSwitches implements GameControlScene {
      */
     void toggleLights(int lightsBitmap) {
         
+    	
     }
     
     void runLightSequence1() {
