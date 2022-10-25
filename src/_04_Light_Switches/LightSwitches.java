@@ -106,10 +106,19 @@ public class LightSwitches implements GameControlScene {
      * lightsBitmap = 0b01100110  // lights 1, 2, 5, 6 on
      */
     void turnMultiLightsOn(int lightsBitmap) {
-        int x = lightsOnOff & lightsBitmap;
         
-        //use the lightsBitmap variable to try and turn on multiple lights 
+    	//shifts it 1 to the left
+    	int x = lightsBitmap >> 1;
+        
+    	//check if last bit is a one
+    	int checker = x & 0b00000001;
+        
+        if(checker == 1) {
+        	
+        }
     	
+    	
+        //use the lightsBitmap variable to try and turn on multiple lights 
     }
     
     /*
