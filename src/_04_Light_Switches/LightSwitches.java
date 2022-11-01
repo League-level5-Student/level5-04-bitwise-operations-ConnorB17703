@@ -76,12 +76,10 @@ public class LightSwitches implements GameControlScene {
      */
     void turnLightOn(int index) {
      
-    	int checker = 0b00000001 << index;
-    	int x = lightsOnOff & checker;
+    	int checker = 0b00000001 << index;    	
+    	lightsOnOff = 0 | checker;
     	
-    	if(x == checker) {
-    		x = 1;
-    	}
+    	
 
     }
     
@@ -91,13 +89,8 @@ public class LightSwitches implements GameControlScene {
      */
     void turnLightOff(int index) {
         
-    	int checker = 0b00000001 << index;
-    	int x = lightsOnOff & checker;
-    	
-    	if(x == checker) {
-    		x = 0;
-    	}
-
+    	int checker = 0b00000001 << index;    	
+    	lightsOnOff = 0 & checker;
     	
     }
     
@@ -106,17 +99,16 @@ public class LightSwitches implements GameControlScene {
      * lightsBitmap = 0b01100110  // lights 1, 2, 5, 6 on
      */
     void turnMultiLightsOn(int lightsBitmap) {
-        
-    	//shifts it 1 to the left
-    	int x = lightsBitmap >> 1;
-        
-    	//check if last bit is a one
-    	int checker = x & 0b00000001;
-        
-        if(checker == 1) {
-        	
-        }
+        int newLights = 0;
     	
+    	for(int i =0; i<8; i++) {
+    		int x = lightsBitmap >> i;
+    		int checker = x & 0b00000001;
+    		
+        	lightsOnOff = newLights | checker;
+        	newLights = lightsOnOff;
+    	}
+        
     	
         //use the lightsBitmap variable to try and turn on multiple lights 
     }
@@ -126,8 +118,20 @@ public class LightSwitches implements GameControlScene {
      * lightsBitmap = 0b10000001  // lights 0, 7 off
      */
     void turnMultiLightsOff(int lightsBitmap) {
+    	int newLights = 0;
+    	
+    	for(int i =0; i<8; i++) {
+    		int x = lightsBitmap >> i;
+    		int checker = x & 0b00000001;
+    		
+        	lightsOnOff = newLights | checker;
+        	newLights = lightsOnOff;
+    	}
     	
     }
+    
+    //might have to recheck the turning lights off methods. 
+    
     
     /*
      * This method should toggle the state of multiple lights
