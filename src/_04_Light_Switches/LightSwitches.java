@@ -88,9 +88,13 @@ public class LightSwitches implements GameControlScene {
      * index = 0        // turn off blue only (set bit 0 = 0)
      */
     void turnLightOff(int index) {
-        
+        int OGlights = 0;
+    	
     	int checker = 0b00000001 << index;    	
-    	lightsOnOff = 0 & checker;
+    	OGlights = lightsOnOff ^ checker;
+    	lightsOnOff = OGlights;
+    	
+    	
     	
     }
     
@@ -99,35 +103,43 @@ public class LightSwitches implements GameControlScene {
      * lightsBitmap = 0b01100110  // lights 1, 2, 5, 6 on
      */
     void turnMultiLightsOn(int lightsBitmap) {
-        int newLights = 0;
-    	
-    	for(int i =0; i<8; i++) {
-    		int x = lightsBitmap >> i;
-    		int checker = x & 0b00000001;
-    		
-        	lightsOnOff = newLights | checker;
-        	newLights = lightsOnOff;
-    	}
         
     	
-        //use the lightsBitmap variable to try and turn on multiple lights 
-    }
+    	lightsOnOff = lightsOnOff | lightsBitmap;
+    	
+    	
+//    	int newLights = 0;
+//    	for(int i =0; i<8; i++) {
+//    		int x = lightsBitmap >> i;
+//    		int checker = x & 0b00000001;
+//    		
+//        	lightsOnOff = newLights | checker;
+//        	newLights = lightsOnOff;
+//    	}
+//        
+   }
     
     /*
      * This method should be able to turn off multiple lights
      * lightsBitmap = 0b10000001  // lights 0, 7 off
      */
     void turnMultiLightsOff(int lightsBitmap) {
-    	int newLights = 0;
     	
-    	for(int i =0; i<8; i++) {
-    		int x = lightsBitmap >> i;
-    		int checker = x & 0b00000001;
-    		
-        	lightsOnOff = newLights | checker;
-        	newLights = lightsOnOff;
-    	}
+    	lightsOnOff = lightsOnOff ^ lightsBitmap;
     	
+    	//********* recheck this method *********
+    	
+    	
+//    	
+//    	int newLights = 0;   	
+//    	for(int i =0; i<8; i++) {
+//    		int x = lightsBitmap >> i;
+//    		int checker = x & 0b00000001;
+//    		
+//        	lightsOnOff = newLights ^ checker;
+//        	newLights = lightsOnOff;
+//    	}
+//    	
     }
     
     //might have to recheck the turning lights off methods. 
