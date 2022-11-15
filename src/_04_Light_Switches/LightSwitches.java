@@ -125,25 +125,20 @@ public class LightSwitches implements GameControlScene {
      */
     void turnMultiLightsOff(int lightsBitmap) {
     	
-    	lightsOnOff = lightsOnOff ^ lightsBitmap;
+    	//lightsOnOff = lightsOnOff & lightsBitmap;
     	
-    	//********* recheck this method *********
+    	int newLights = 0;
+    	for(int i =0; i<8; i++) {
+    		int x = lightsBitmap >> i;
+    		int checker = x & 0b00000001;
+    		
+        	lightsOnOff = newLights & checker;
+        	newLights = lightsOnOff;
+    	}
+        
     	
-    	
-//    	
-//    	int newLights = 0;   	
-//    	for(int i =0; i<8; i++) {
-//    		int x = lightsBitmap >> i;
-//    		int checker = x & 0b00000001;
-//    		
-//        	lightsOnOff = newLights ^ checker;
-//        	newLights = lightsOnOff;
-//    	}
-//    	
     }
-    
-    //might have to recheck the turning lights off methods. 
-    
+        
     
     /*
      * This method should toggle the state of multiple lights
@@ -155,7 +150,7 @@ public class LightSwitches implements GameControlScene {
      *                               orange(3) and yellow(4) on
      */
     void toggleLights(int lightsBitmap) {
-        
+        lightsOnOff = lightsOnOff ^ lightsBitmap;
     	
     }
     
