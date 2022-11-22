@@ -56,7 +56,19 @@ public class Base64Decoder {
     //1. Complete this method so that it returns the index in
     //   the base64Chars array that corresponds to the passed in char.
     public static byte convertBase64Char(char c){
-        return 0;
+    	
+    	//should use this?
+        for(int i = 0; i<base64Chars.length; i++) {
+        	if(c == base64Chars[i]) {
+        		return i;
+        	}
+        }
+    	
+        //or this?
+    	return base64Chars.indexOf(c);
+    	
+    	
+    	//code in return methods not working, should I change return type if asking for an index?
     }
 
     //2. Complete this method so that it will take in a string that is 4
