@@ -60,12 +60,12 @@ public class Base64Decoder {
     	//should use this?
         for(int i = 0; i<base64Chars.length; i++) {
         	if(c == base64Chars[i]) {
-        		return i;
+        		return (byte) i;
         	}
-        }
-    	
+        }    	
         //or this?
-    	return base64Chars.indexOf(c);
+    	//return base64Chars.indexOf(c);
+		return (byte) 0;
     	
     	
     	//code in return methods not working, should I change return type if asking for an index?
@@ -75,8 +75,17 @@ public class Base64Decoder {
     //   characters long and return an array of 3 bytes (24 bits). The byte
     //   array should be the binary value of the encoded characters.
     public static byte[] convert4CharsTo24Bits(String s){
-        return null;
+        byte[] bValues = new byte[3];
+    	
+    	for(int i = 0; i<s.length(); i++) {
+        	bValues[i] = convertBase64Char(s.charAt(i));
+        }
+    	
+    	
+    	return bValues;  
     }
+    
+    
 
     //3. Complete this method so that it takes in a string of any length
     //   and returns the full byte array of the decoded base64 characters.
