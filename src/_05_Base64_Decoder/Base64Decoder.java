@@ -68,7 +68,7 @@ public class Base64Decoder {
 		return (byte) 0;
     	
     	
-    	//code in return methods not working, should I change return type if asking for an index?
+    	
     }
 
     //2. Complete this method so that it will take in a string that is 4
@@ -78,14 +78,18 @@ public class Base64Decoder {
         byte[] bValues = new byte[3];
     	
     	for(int i = 0; i<s.length(); i++) {
-        	bValues[i] = convertBase64Char(s.charAt(i));
+        	bValues[i] = (byte) (((byte)s.charAt(i) << (2*i) |  (byte) ((byte)s.charAt(i+1) >> ((4*i)/2))));
         }
     	
     	
     	return bValues;  
     }
     
-    
+    /*must use bit shifting and operators to pack 0000 0000  --> 0000 0000
+    											  0000 0000      0000 0000
+    									|		  0000 0000      0000 0000    
+     											  0000 0000
+    */											  
 
     //3. Complete this method so that it takes in a string of any length
     //   and returns the full byte array of the decoded base64 characters.
