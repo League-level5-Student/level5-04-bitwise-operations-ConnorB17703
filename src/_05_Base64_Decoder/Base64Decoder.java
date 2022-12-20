@@ -79,7 +79,7 @@ public class Base64Decoder {
     	
     	for(int i = 0; i<s.length()-1; i++) {
     	
-        	bValues[i] = (byte) (((byte)convertBase64Char(s.charAt(i)) << (2*i)) |  (byte) ((byte)convertBase64Char(s.charAt(i+1)) >> ((4*i)/2)));
+        	bValues[i] = (byte) (((byte)convertBase64Char(s.charAt(i)) << (2*(i+1))) |  (byte) ((byte)convertBase64Char(s.charAt(i+1)) >> ((4*i)/2)));
         	
 //        	bValues[0] = (byte) ((byte) ((byte)s.charAt(0) << 2) | (byte) ((byte)s.charAt(1) >> 4)); 
 //        	bValues[1] = (byte) ((byte) ((byte)s.charAt(1) << 4) | (byte) ((byte)s.charAt(2) >> 2)); 
