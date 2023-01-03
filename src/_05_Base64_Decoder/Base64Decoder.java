@@ -79,16 +79,18 @@ public class Base64Decoder {
     	
     	for(int i = 0; i<s.length()-1; i++) {
     	
-        	bValues[i] = (byte) (((byte)convertBase64Char(s.charAt(i)) << (2*(i+1))) |  (byte) ((byte)convertBase64Char(s.charAt(i+1)) >> ((4*i)/2)));
+    		int a = convertBase64Char((char) (s.charAt(i)<< (2*(i+1))));
+    		System.out.println("a: " + Integer.toBinaryString(a));
+    		int b = convertBase64Char((char) (s.charAt(i+1) >> ((4*i)/2)));
+    		
+        	bValues[i] = (byte)(a | b) ;
         	
-//        	bValues[0] = (byte) ((byte) ((byte)s.charAt(0) << 2) | (byte) ((byte)s.charAt(1) >> 4)); 
-//        	bValues[1] = (byte) ((byte) ((byte)s.charAt(1) << 4) | (byte) ((byte)s.charAt(2) >> 2)); 
-//        	bValues[2] = (byte) ((byte) ((byte)s.charAt(2) << 6) | (byte) ((byte)s.charAt(3))); 
-        	
+
         	//System.out.println((byte) bValues);
         }
     	
-    	
+    	//use syso to check every iteration to make sure they're merging correctly
+    	//to avoid confusion, break it up
     	return bValues;  
     }
     
