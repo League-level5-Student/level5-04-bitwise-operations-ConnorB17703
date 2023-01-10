@@ -77,16 +77,21 @@ public class Base64Decoder {
     public static byte[] convert4CharsTo24Bits(String s){
         byte[] bValues = new byte[3];
     	
-    	for(int i = 0; i<s.length()-1; i++) {
+    	for(int i = 0; i<s.length(); i++) {
     	
+    		System.out.println("Character at index: "+ i + " is " + s.charAt(i) +" --> " + Integer.toBinaryString(s.charAt(i)));
     		int a = convertBase64Char((char) (s.charAt(i)<< (2*(i+1))));
-    		System.out.println("a: " + Integer.toBinaryString(a));
+    		
+    		//shifted to left 2
+    		System.out.println("a: " + a + " --> " + Integer.toBinaryString(a));
+    		
     		int b = convertBase64Char((char) (s.charAt(i+1) >> ((4*i)/2)));
     		
         	bValues[i] = (byte)(a | b) ;
         	
 
-        	//System.out.println((byte) bValues);
+//        	System.out.println((byte) bValues[i]);
+        	System.out.println("\n");
         }
     	
     	//use syso to check every iteration to make sure they're merging correctly
@@ -104,5 +109,6 @@ public class Base64Decoder {
     //   and returns the full byte array of the decoded base64 characters.
     public static byte[] base64StringToByteArray(String file) {
         return null;
+    
     }
 }
