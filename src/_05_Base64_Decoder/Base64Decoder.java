@@ -1,5 +1,7 @@
 package _05_Base64_Decoder;
 
+import java.util.Arrays;
+
 /*
  * Base 64 is a way of encoding binary data using text.
  * Each number 0-63 is mapped to a character.
@@ -76,33 +78,48 @@ public class Base64Decoder {
     //   array should be the binary value of the encoded characters.
     public static byte[] convert4CharsTo24Bits(String s){
         byte[] bValues = new byte[3];
+    	int x; 
+    	int y;
+    	System.out.println(s);
     	
-    	for(int i = 0; i<s.length(); i++) {
     	
+    	for(int i = 0; i<s.length()-1; i++) {
+    		x = (2*(i+1));
+    		y = ((4*i)/2);
+    		
     		System.out.println("Character at index: "+ i + " is " + s.charAt(i) +" --> " + Integer.toBinaryString(s.charAt(i)));
-    		int a = convertBase64Char((char) (s.charAt(i)<< (2*(i+1))));
+    		int a = convertBase64Char((char) (s.charAt(i)<< x));
     		
-    		//shifted to left 2
+    		//shifted selected byte to left 
+    		System.out.println(Integer.toBinaryString(s.charAt(i)) + " shifted " + x + " to left");
     		System.out.println("a: " + a + " --> " + Integer.toBinaryString(a));
+    	
     		
-    		int b = convertBase64Char((char) (s.charAt(i+1) >> ((4*i)/2)));
+    		int b = convertBase64Char((char) (s.charAt(i+1) >> (y)));
+    		
+    		//shift next byte to right
+    		System.out.println(Integer.toBinaryString(s.charAt(i+1)) + " shifted " + y + " to right");
+    		System.out.println("b: " + b + " --> " + Integer.toBinaryString(b));    		
     		
         	bValues[i] = (byte)(a | b) ;
-        	
+        	System.out.println("bValues[" + i + "] = " + Integer.toBinaryString(bValues[i]));
 
 //        	System.out.println((byte) bValues[i]);
         	System.out.println("\n");
         }
     	
-    	//use syso to check every iteration to make sure they're merging correctly
-    	//to avoid confusion, break it up
-    	return bValues;  
+    	
+    	return bValues; 
     }
     
     /*must use bit shifting and operators to pack 0000 0000  --> 0000 0000
     											  0000 0000      0000 0000
     									|		  0000 0000      0000 0000    
      											  0000 0000
+    
+     ***Something wrong with forloop iteration & using the wrong binary (supposed to use base64 binary instead of acsii value)
+     Base64.decodeBase64(s.charAt(i))
+
     */											  
 
     //3. Complete this method so that it takes in a string of any length
