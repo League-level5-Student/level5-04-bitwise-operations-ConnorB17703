@@ -37,7 +37,8 @@ public class Base64DecoderTester {
         // 111.111 111.111 111.111 111.111
         // 1111.1111 1111.1111 1111.1111
         assertArrayEquals(answer, check);
-
+// 0000 0111
+        
         answer[0] = (byte) 7;
         answer[1] = (byte) 13;
         answer[2] = (byte) 126;

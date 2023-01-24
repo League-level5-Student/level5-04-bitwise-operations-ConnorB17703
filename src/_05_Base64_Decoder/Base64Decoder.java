@@ -1,6 +1,7 @@
 package _05_Base64_Decoder;
 
 import java.util.Arrays;
+import java.util.Base64;
 
 /*
  * Base 64 is a way of encoding binary data using text.
@@ -88,7 +89,8 @@ public class Base64Decoder {
     		y = ((4*i)/2);
     		
     		System.out.println("Character at index: "+ i + " is " + s.charAt(i) +" --> " + Integer.toBinaryString(s.charAt(i)));
-    		int a = convertBase64Char((char) (s.charAt(i)<< x));
+    		int b64Val = convertBase64Char(s.charAt(i));
+    		int a = b64Val >> x;
     		
     		//shifted selected byte to left 
     		System.out.println(Integer.toBinaryString(s.charAt(i)) + " shifted " + x + " to left");
@@ -102,7 +104,7 @@ public class Base64Decoder {
     		System.out.println("b: " + b + " --> " + Integer.toBinaryString(b));    		
     		
         	bValues[i] = (byte)(a | b) ;
-        	System.out.println("bValues[" + i + "] = " + Integer.toBinaryString(bValues[i]));
+        	System.out.println("bValues[" + i + "] = " + (bValues[i]));
 
 //        	System.out.println((byte) bValues[i]);
         	System.out.println("\n");
@@ -118,7 +120,6 @@ public class Base64Decoder {
      											  0000 0000
     
      ***Something wrong with forloop iteration & using the wrong binary (supposed to use base64 binary instead of acsii value)
-     Base64.decodeBase64(s.charAt(i))
 
     */											  
 
