@@ -86,25 +86,30 @@ public class Base64Decoder {
     	
     	for(int i = 0; i<s.length()-1; i++) {
     		x = (2*(i+1));
-    		y = ((4*i)/2);
+    		y = (4-(i*2));
     		
-    		System.out.println("Character at index: "+ i + " is " + s.charAt(i) +" --> " + Integer.toBinaryString(s.charAt(i)));
+    		System.out.println("Character at index: "+ i + " is " + s.charAt(i) +" --> " + Integer.toBinaryString(convertBase64Char(s.charAt(i))));
     		int b64Val = convertBase64Char(s.charAt(i));
-    		int a = b64Val >> x;
+    		int a = b64Val << x;
     		
     		//shifted selected byte to left 
-    		System.out.println(Integer.toBinaryString(s.charAt(i)) + " shifted " + x + " to left");
+    		System.out.println(Integer.toBinaryString(b64Val) + " shifted " + x + " to left");
     		System.out.println("a: " + a + " --> " + Integer.toBinaryString(a));
     	
     		
-    		int b = convertBase64Char((char) (s.charAt(i+1) >> (y)));
+    		int b = convertBase64Char(s.charAt(i+1));
+    		int rShift = b >> y;
+    		
     		
     		//shift next byte to right
-    		System.out.println(Integer.toBinaryString(s.charAt(i+1)) + " shifted " + y + " to right");
-    		System.out.println("b: " + b + " --> " + Integer.toBinaryString(b));    		
+    		System.out.println(Integer.toBinaryString(b) + " shifted " + y + " to right");
+    		System.out.println("b: " + b + " --> " + Integer.toBinaryString(rShift) + "  a: " + a);    		
     		
-        	bValues[i] = (byte)(a | b) ;
-        	System.out.println("bValues[" + i + "] = " + (bValues[i]));
+    		
+    		
+    		
+        	bValues[i] = (byte)((byte)a | (byte)rShift) ;
+        	System.out.println("bValues[" + i + "] = " + (bValues[i]) + "   Binary: " + Integer.toBinaryString(bValues[i]));
 
 //        	System.out.println((byte) bValues[i]);
         	System.out.println("\n");
@@ -119,8 +124,7 @@ public class Base64Decoder {
     									|		  0000 0000      0000 0000    
      											  0000 0000
     
-     ***Something wrong with forloop iteration & using the wrong binary (supposed to use base64 binary instead of acsii value)
-
+    
     */											  
 
     //3. Complete this method so that it takes in a string of any length
