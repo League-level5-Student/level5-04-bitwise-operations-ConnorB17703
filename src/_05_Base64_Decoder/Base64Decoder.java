@@ -130,7 +130,19 @@ public class Base64Decoder {
     //3. Complete this method so that it takes in a string of any length
     //   and returns the full byte array of the decoded base64 characters.
     public static byte[] base64StringToByteArray(String file) {
-        return null;
+        byte[] bArray = new byte[file.length()]; 
+        
+        
+        for(int i =0; i<file.length(); i++){
+        	//****in this method, you most likely have to use the base64 chart to decode the file messages****
+        	
+        	
+//        int b = convertBase64Char(file.charAt(i));}
+//        bArray[i] = (byte) b;
+//        System.out.println("bArray[" + i + "] = " + b + " --> " + Integer.toBinaryString(b));
+        }
+    	
+    	return bArray;
     
     }
 }
