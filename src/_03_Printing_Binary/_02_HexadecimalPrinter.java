@@ -205,7 +205,7 @@ public class _02_HexadecimalPrinter implements ActionListener {
      * 
      * 
      */
-    String binaryToAscii(String binaryStr) {
+    public String binaryToAscii(String binaryStr) {
 
 String ascii = "";
 String bits[] = new String[4];

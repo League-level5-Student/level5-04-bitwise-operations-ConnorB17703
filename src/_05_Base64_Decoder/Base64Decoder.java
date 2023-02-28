@@ -3,6 +3,8 @@ package _05_Base64_Decoder;
 import java.util.Arrays;
 import java.util.Base64;
 
+import _03_Printing_Binary._02_HexadecimalPrinter;
+
 /*
  * Base 64 is a way of encoding binary data using text.
  * Each number 0-63 is mapped to a character.
@@ -46,7 +48,7 @@ import java.util.Base64;
  * View this link for a full description of Base64 encoding
  * https://en.wikipedia.org/wiki/Base64
  */
-public class Base64Decoder {
+public class Base64Decoder{
 
     final static char[] base64Chars = {
             'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
@@ -56,6 +58,8 @@ public class Base64Decoder {
             '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '/'
     };
 
+    static _02_HexadecimalPrinter hP = new _02_HexadecimalPrinter();
+    
     //1. Complete this method so that it returns the index in
     //   the base64Chars array that corresponds to the passed in char.
     public static byte convertBase64Char(char c){
@@ -131,23 +135,40 @@ public class Base64Decoder {
     //   and returns the full byte array of the decoded base64 characters.
     public static byte[] base64StringToByteArray(String file) {
         byte[] bArray = new byte[file.length()]; 
-        int value;
+        int Bvalue;
         
-        for(int i =0; i<file.length(); i++){
+        
+     bArray = convert4CharsTo24Bits(file.charAt(0)+ "" + file.charAt(1)+ file.charAt(2)+ file.charAt(3) );
+        
+        
+        
+        for(int i =0; i<bArray.length; i++){
         	//****in this method, you most likely have to use the base64 chart to decode the file messages****
         	//1. find value on base64 chart; 2. convert to binary 
-        	for(int j = 0; j<base64Chars.length;i++) {
-        		if(file.charAt(i)==base64Chars[i]) {
-        			value = j;
-        			//now that you have the value of 1st character in the file in base64, convert to binary then ascii.  
-        		}
-        	}
+        	//System.out.println("Char: " + file.charAt(i) + " --> " + Bvalue + "   Binary: " +Integer.toBinaryString(Bvalue));
+        	
+        	System.out.println((char)bArray[i]);
+        	
+        	
+//        	for(int j = 0; j<base64Chars.length;i++) {
+//        		if(file.charAt(i)==base64Chars[j]) {
+//        			value = j;
+//        			System.out.println("character: " + file.charAt(i) + " = " + value);
+//        			//now that you have the value of 1st character in the file in base64, convert to binary then ascii.  
+//        			
+//        		}
+//        	}
+     
+        	
         	
 //        int b = convertBase64Char(file.charAt(i));}
 //        bArray[i] = (byte) b;
 //        System.out.println("bArray[" + i + "] = " + b + " --> " + Integer.toBinaryString(b));
         }
     	
+        
+        
+        
     	return bArray;
     
     }
